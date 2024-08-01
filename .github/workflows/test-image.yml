@@ -22,7 +22,7 @@ jobs:
                 options: --privileged --cgroupns=host
         steps:
             - name: install packages
-              run: sudo apt-get install netcat sshpass openssh-client -y
+              run: apt-get install netcat sshpass openssh-client -y
             - name: test sshd with netcat
               run: nc -vz ansible-node 22
             - name: test sshd with ssh
