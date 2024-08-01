@@ -27,4 +27,4 @@ jobs:
             - name: test sshd with netcat
               run: nc -vz localhost 2222
             - name: test sshd with ssh
-              run: sshpass -p '123' ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 2222 root@localhost ls
+              run: sshpass -p '123' ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 2222 root@localhost ls -ltra
