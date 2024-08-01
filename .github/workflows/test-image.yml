@@ -1,0 +1,25 @@
+name: test-image
+
+on:
+    workflow_run:
+        workflows:
+            - Docker
+        branches:
+            - master
+        types:
+            - completed
+
+jobs:
+    test-image:
+        name: Test image
+        runs-on: ubuntu-latest
+        services:
+            ansible-node:
+                image: ghcr.io/pgulb/rocky-ansible-tester:master
+                ports:
+                    - 2222:22
+        steps:
+            - name: install netcat
+              run: sudo apt-get install netcat -y
+            - name: test sshd with netcat
+              run: nc -vz localhost 2222
