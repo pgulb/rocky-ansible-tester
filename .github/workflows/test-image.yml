@@ -19,7 +19,9 @@ jobs:
                 ports:
                     - 2222:22
         steps:
-            - name: install netcat
-              run: sudo apt-get install netcat -y
+            - name: install netcat and ssh
+              run: sudo apt-get install netcat openssh-client -y
             - name: test sshd with netcat
               run: nc -vz localhost 2222
+            - name: test sshd with ssh
+              run: ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 2222 localhost whoami
